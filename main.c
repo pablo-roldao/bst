@@ -36,17 +36,26 @@ int main() {
       break;
     }
     case 6: {
-      printf("%d\n", getNumberOfLeaves(tree));
+      int height = getHeight(tree);
+      if (height > 0) {
+        printf("%d\n", height);
+      } else {
+        printf("\n");
+      }
       break;
     }
     case 7: {
+      printf("%d\n", getNumberOfLeaves(tree));
+      break;
+    }
+    case 8: {
       int value;
       scanf("%d", &value);
       printPath(tree, value);
       printf("\n");
       break;
     }
-    case 8: {
+    case 9: {
       int value;
       scanf("%d", &value);
       tree = erase(tree, value);

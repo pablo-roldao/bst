@@ -57,6 +57,16 @@ void printReverse(tree root) {
     }
 }
 
+int getHeight(tree root) {
+    if (root == NULL)
+        return 0;
+    
+    int leftHeight = getHeight(root->left);
+    int rightHeight = getHeight(root->right);
+
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+}
+
 void printPath(tree root, int value) {}
 
 int getNumberOfLeaves(tree root) { return 0; }
