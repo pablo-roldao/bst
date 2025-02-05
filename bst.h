@@ -16,6 +16,7 @@ void printPosOrder(tree root);
 void printReverse(tree root);
 int getHeight(tree root);
 int getNumberOfLeaves(tree root);
+tree search(tree root, int value);
 void printPath(tree root, int value);
 tree erase(tree root, int value);
 

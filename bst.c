@@ -21,9 +21,7 @@ tree insertNode(tree root, int value) {
   return root;
 }
 
-void printNode(int value) {
-    printf("[%d]", value);
-}
+void printNode(int value) { printf("[%d]", value); }
 
 void printPreOrder(tree root) {
   if (root != NULL) {
@@ -34,41 +32,61 @@ void printPreOrder(tree root) {
 }
 
 void printInOrder(tree root) {
-    if (root != NULL) {
-        printInOrder(root->left);
-        printNode(root->value);
-        printInOrder(root->right);
-    }
+  if (root != NULL) {
+    printInOrder(root->left);
+    printNode(root->value);
+    printInOrder(root->right);
+  }
 }
 
 void printPosOrder(tree root) {
-    if (root != NULL) {
-        printPosOrder(root->left);
-        printPosOrder(root->right);
-        printNode(root->value);
-    }
+  if (root != NULL) {
+    printPosOrder(root->left);
+    printPosOrder(root->right);
+    printNode(root->value);
+  }
 }
 
 void printReverse(tree root) {
-    if (root != NULL) {
-        printReverse(root->right);
-        printNode(root->value);
-        printReverse(root->left);
-    }
+  if (root != NULL) {
+    printReverse(root->right);
+    printNode(root->value);
+    printReverse(root->left);
+  }
 }
 
 int getHeight(tree root) {
-    if (root == NULL)
-        return 0;
-    
-    int leftHeight = getHeight(root->left);
-    int rightHeight = getHeight(root->right);
+  if (root == NULL)
+    return 0;
 
-    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+  int leftHeight = getHeight(root->left);
+  int rightHeight = getHeight(root->right);
+
+  return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 }
 
-void printPath(tree root, int value) {}
-
 int getNumberOfLeaves(tree root) { return 0; }
+
+tree search(tree root, int value) {
+  if (root == NULL || root->value == value)
+        return root;
+
+    if (root->value < value)
+        return search(root->right, value);
+
+    return search(root->left, value);
+}
+
+void printPath(tree root, int value) {
+  if (search(root, value) != NULL) {
+    printNode(root->value);
+
+    if (root->value > value) {
+      printPath(root->left, value);
+    } else {
+      printPath(root->right, value);
+    }
+  }
+}
 
 tree erase(tree root, int value) {}
