@@ -65,7 +65,20 @@ int getHeight(tree root) {
   return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 }
 
-int getNumberOfLeaves(tree root) { return 0; }
+int getNumberOfLeaves(tree root) {
+    if (root == NULL) {
+        return 0;
+    }
+
+    int result = 0;
+    result += getNumberOfLeaves(root->left);
+    result += getNumberOfLeaves(root->right);
+    if (root->left == root->right) {
+        result++;
+    }
+
+    return result;
+}
 
 tree search(tree root, int value) {
   if (root == NULL || root->value == value)
