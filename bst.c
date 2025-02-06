@@ -80,7 +80,7 @@ int getNumberOfLeaves(tree root) {
     return result;
 }
 
-tree search(tree root, int value) {
+node* search(tree root, int value) {
   if (root == NULL || root->value == value)
         return root;
 
@@ -102,4 +102,46 @@ void printPath(tree root, int value) {
   }
 }
 
-tree erase(tree root, int value) {}
+node* getGreaterNode(tree root) {
+  if (root->right != NULL) {
+    return getGreaterNode(root->right);
+  }
+  return root;
+}
+
+tree removeNode(tree root, int value) {
+  if (root == NULL) {
+    return root;
+  }
+
+  if (value < root->value) {
+    root->left = removeNode(root->left, value);
+  } else if (value > root->value) {
+    root->right = removeNode(root->right, value);
+  } else {
+    if (root->left == root->right) {
+      free(root);
+      return NULL;
+    }
+
+    if (root->left != NULL && root->right != NULL) {
+      root->value = getGreaterNode(root->left)->value;
+      root->left = removeNode(root->left, root->value);
+      return root;
+    }
+
+    if (root->left != NULL && root->right == NULL) {
+      tree leftSubtree = root->left;
+      free(root);
+      return leftSubtree;
+    }
+    
+    if (root->left == NULL && root->right != NULL) {
+      tree rightSubtree = root->right;
+      free(root);
+      return rightSubtree;
+    }
+  }
+
+  return root;
+}

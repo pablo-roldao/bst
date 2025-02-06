@@ -58,7 +58,7 @@ int main() {
     case 9: {
       int value;
       scanf("%d", &value);
-      tree = erase(tree, value);
+      tree = removeNode(tree, value);
       break;
     }
     }

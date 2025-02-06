@@ -18,6 +18,6 @@ int getHeight(tree root);
 int getNumberOfLeaves(tree root);
 tree search(tree root, int value);
 void printPath(tree root, int value);
-tree erase(tree root, int value);
+tree removeNode(tree root, int value);
 
 #endif
